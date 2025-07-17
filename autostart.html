@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Auto Generator</title>
+</head>
+<body>
+  <h2>Gratis IPTV Trial M3U Generator</h2>
+<script>
+  start(); // automatisch starten
+</script>
+  <pre id="log"></pre>
+
+  <script>
+    const apiKey = "9e6c8d87a7msh27a6a07d140343fp19120cjsn3844708215dd";
+    const log = msg => document.getElementById('log').textContent += msg + "\n";
+
+    async function start() {
+      log("?? Gmailnator email genereren...");
+      const email = await generateEmail();
+      if (!email) return;
+
+      log("? E-mail gegenereerd: " + email);
+      await submitFormToChromaIPTV(email);
+      log("? Wachten op M3U-email... (max 5 minuten)");
+      pollInbox(email, 0);
+    }
+
+    async function generateEmail() {
+      try {
+        const res = await fetch("https://gmailnator.p.rapidapi.com/generate-email", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-RapidAPI-Host": "gmailnator.p.rapidapi.com",
+            "X-RapidAPI-Key": apiKey,
+          },
+          body: JSON.stringify({ options: [1, 2, 3] })
+        });
+
+        const data = await res.json();
+        return data.email || null;
+      } catch (err) {
+        log("? Fout bij e-mail genereren");
+        return null;
+      }
+    }
+
+    async function submitFormToChromaIPTV(email) {
+      const formData = new URLSearchParams();
+      formData.append("_wpcf7", "3445");
+      formData.append("_wpcf7_version", "5.1.9");
+      formData.append("_wpcf7_locale", "en_US");
+      formData.append("_wpcf7_unit_tag", "wpcf7-f3445-p3441-o1");
+      formData.append("_wpcf7_container_post", "3441");
+      formData.append("first_name", "Demo");
+      formData.append("last_name", "User");
+      formData.append("email", email);
+      formData.append("country", "Netherlands");
+
+      await fetch("https://chromaiptv.com/wp-admin/admin-ajax.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: formData
+      });
+
+      log("?? Formulier verstuurd naar ChromaIPTV");
+    }
+
+    async function pollInbox(email, attempt) {
+      if (attempt >= 20) {
+        log("? Geen M3U-email ontvangen binnen 5 minuten.");
+        return;
+      }
+
+      log(`?? Inbox check (${attempt + 1}/20)...`);
+
+      const res = await fetch("https://gmailnator.p.rapidapi.com/inbox", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-RapidAPI-Host": "gmailnator.p.rapidapi.com",
+          "X-RapidAPI-Key": apiKey,
+        },
+        body: JSON.stringify({ email, limit: 5 }),
+      });
+
+      const data = await res.json();
+      const msg = data.find(m => m.subject && m.subject.includes(".m3u"));
+
+      if (msg) {
+        log("?? M3U e-mail gevonden!");
+        await processM3UMessage(msg.messageID);
+      } else {
+        setTimeout(() => pollInbox(email, attempt + 1), 15000);
+      }
+    }
+
+    async function processM3UMessage(id) {
+      const res = await fetch(`https://gmailnator.p.rapidapi.com/messageid?id=${encodeURIComponent(id)}`, {
+        method: "GET",
+        headers: {
+          "X-RapidAPI-Host": "gmailnator.p.rapidapi.com",
+          "X-RapidAPI-Key": apiKey,
+        }
+      });
+
+      const body = await res.text();
+      const match = body.match(/http.*?:\/\/[^\/]+\/([^\/]+)\/([^\/]+)\/[^\/]+\.m3u/);
+      if (!match) {
+        log("?? M3U link niet correct gevonden in e-mail.");
+        return;
+      }
+
+      const username = match[1];
+      const password = match[2];
+      log(`? Gebruikersnaam: ${username}\n? Wachtwoord: ${password}`);
+      await updateM3U(username, password);
+    }
+
+    async function updateM3U(username, password) {
+      const res = await fetch("perfecto.m3u");
+      let content = await res.text();
+
+      content = content.replace(/{{USERNAME}}/g, username).replace(/{{PASSWORD}}/g, password);
+
+      const blob = new Blob([content], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "perfecto_generated.m3u";
+      a.click();
+
+      log("? perfecto.m3u gegenereerd en gedownload!");
+    }
+  </script>
+</body>
+</html>

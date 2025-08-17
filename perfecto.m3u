@@ -1,14 +1,14 @@
 #EXTM3U
 #EXTINF:-1 tvg-id="" tvg-name="###### Fight TV 4K ######" tvg-logo="" group-title="UF| Fight 4K TV",###### Fight TV 4K ######
-http://hi-ott.me:80/07e441c2fda8/57927db0d2/373935
+http://hi-ott.me:80/07e441c2fda8/57927db0d2/373935.ts
 #EXTINF:-1 tvg-id="Fight1.uf" tvg-name="UF: Fight 1 HD" tvg-logo="http://icon-tmdb.me/stalker_portal/misc/logos/320/1985.jpg?9938" group-title="UF| Fight 4K TV",UF: Fight 1 HD
-https://cf.cdn8k.me:443/live/07e441c2fda8/57927db0d2/1001475
+https://cf.cdn8k.me:443/live/07e441c2fda8/57927db0d2/1001475.ts
 #EXTINF:-1 tvg-id="Fight2.uf" tvg-name="UF: Fight 2 HD" tvg-logo="http://icon-tmdb.me/stalker_portal/misc/logos/320/1985.jpg?9938" group-title="UF| Fight 4K TV",UF: Fight 2 HD
-https://cf.cdn8k.me:443/live/07e441c2fda8/57927db0d2/1228655
+https://cf.cdn8k.me:443/live/07e441c2fda8/57927db0d2/1228655.ts
 #EXTINF:-1 tvg-id="Fight3.uf" tvg-name="UF: Fight 3 HD" tvg-logo="http://icon-tmdb.me/stalker_portal/misc/logos/320/1985.jpg?9938" group-title="UF| Fight 4K TV",UF: Fight 3 HD
-https://cf.cdn8k.me:443/live/07e441c2fda8/57927db0d2/605787
+https://cf.cdn8k.me:443/live/07e441c2fda8/57927db0d2/605787.ts
 #EXTINF:-1 tvg-id="Fight4.uf" tvg-name="UF: Fight 4 HD" tvg-logo="http://icon-tmdb.me/stalker_portal/misc/logos/320/1985.jpg?9938" group-title="UF| Fight 4K TV",UF: Fight 4 HD
-https://cf.cdn8k.me:443/live/07e441c2fda8/57927db0d2/940839
+https://cf.cdn8k.me:443/live/07e441c2fda8/57927db0d2/940839.ts
 #EXTINF:-1 tvg-id="Fight5.uf" tvg-name="UF: Fight 5 HD" tvg-logo="http://icon-tmdb.me/stalker_portal/misc/logos/320/1985.jpg?9938" group-title="UF| Fight 4K TV",UF: Fight 5 HD
 https://cf.cdn8k.me:443/live/07e441c2fda8/57927db0d2/1001475.ts
 #EXTINF:-1 tvg-id="" tvg-name="###### TÜRKIYE TV 4K ######" tvg-logo="" group-title="TR| TÜRKIYE 4K TV",###### TÜRKIYE TV 4K ######

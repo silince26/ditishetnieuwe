@@ -1,6 +1,10 @@
 #EXTM3U
 #EXTINF:-1 tvg-id="" tvg-name="###### TÜRKIYE TV 4K ######" tvg-logo="" group-title="TR| TÜRKIYE 4K TV",###### TÜRKIYE TV 4K ######
 http://hi-ott.me:80/77d2d20b844e/c1f2897450/373935
+#EXTINF:-1 tvg-id="Glory.tr" tvg-name="TR: Glory 103" tvg-logo="http://icon-tmdb.me/stalker_portal/misc/logos/320/1985.jpg?9938" group-title="TR| TÜRKIYE 4K TV",TR: Glory 103
+http://cf.cdn8k.me:80/live/77d2d20b844e/c1f2897450/605887.ts
+#EXTINF:-1 tvg-id="Glory 1.tr" tvg-name="TR: Glory 103 misschien beter" tvg-logo="http://icon-tmdb.me/stalker_portal/misc/logos/320/1985.jpg?9938" group-title="TR| TÜRKIYE 4K TV",TR: Glory 103 misschien beter
+http://cf.cdn8k.me:80/live/77d2d20b844e/c1f2897450/605785.ts
 #EXTINF:-1 tvg-id="ATV.tr" tvg-name="TR: ATV HD" tvg-logo="http://icon-tmdb.me/stalker_portal/misc/logos/320/1985.jpg?9938" group-title="TR| TÜRKIYE 4K TV",TR: ATV HD
 http://hi-ott.me:80/77d2d20b844e/c1f2897450/281613
 #EXTINF:-1 tvg-id="" tvg-name="TR: ATV Avrupa" tvg-logo="http://icon-tmdb.me/stalker_portal/misc/logos/320/882.jpg?13545" group-title="TR| TÜRKIYE 4K TV",TR: ATV Avrupa
